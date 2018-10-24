@@ -60,9 +60,7 @@ def test():
     create("task two \n ")
     print(read(0))
     print(read(1))
-
-    update(0, "task three" \n)
-
+    update(0, "task three \n")
     destroy(1)
 
     mark_completed(0)
@@ -76,11 +74,11 @@ def test():
     select("R")
 
 
-test()
-
-running = True
-while running:
-    selection = user_input(
-        "Press C to add to list of tasks, R to read from list and P to display list..."
-    )
-    running = select(selection)
+if __name__ == "__main__":
+    test()
+    running = True
+    while running:
+        selection = user_input(
+            "Press C to add to list of tasks, R to read from list and P to display list..."
+        )
+        running = select(selection)
