@@ -2,7 +2,6 @@ import uuid
 import sys
 import datetime
 import time
-from termcolor import colored
 
 
 class TodoList(object):
@@ -31,19 +30,19 @@ class TodoList(object):
                            "state": False,
                            "createdAt": datetime.datetime.now(),
                            "id": id})
-        print(colored("{} created".format(title), 'green'))
+        print("{} created".format(title))
         return id
 
     def delete(self, id):
         ''' deletes note by id '''
         for note in self.notes:
             if note["id"] == id:
-                print(colored("\n Deleting {}".format(id), 'red'))
+                print("\n Deleting {}".format(id))
                 try:
-                    self.notes.pop(note)
+                    self.notes.remove(note)
                 except Exception as e:
-                    print(colored(
-                        "\n Error: {e} You will be redirected to the main program".format(e), 'red'))
+                    print(
+                        "\n Error: {e} You will be redirected to the main program".format(e))
                     self.show()
 
     def updateByID(self, id, content):
@@ -54,8 +53,8 @@ class TodoList(object):
                 try:
                     note['content'] = content
                 except Exception as e:
-                    print(colored(
-                        "\n Error: {e} You will be redirected to the main program".format(e), 'red'))
+                    print(
+                        "\n Error: {e} You will be redirected to the main program".format(e))
                     self.show()
 
     def getByID(self, id):
@@ -66,8 +65,8 @@ class TodoList(object):
 
     def exitProgram(self):
         ''' closes program '''
-        print(colored(
-            " \n We will be closing the program in 10 seconds but we'll show your notes first \n", 'red'))
+        print(
+            " \n We will be closing the program in 10 seconds but we'll show your notes first \n")
         self.show()
         time.sleep(10)
         sys.exit(0)
@@ -78,19 +77,17 @@ class TodoList(object):
         return uinput
 
     def test(self):
-         self.show()
-         noteref = self.create("Hello World", "Test")
-         self.changeState(noteref, True)
-         self.show()
-         self.updateByID(noteref, "BNye World")
-         self.getByID(noteref)
-         time.sleep(20)
-         self.delete(noteref)
-         self.exitProgram()
-
+        self.show()
+        noteref = self.create("Hello World", "Test")
+        self.changeState(noteref, True)
+        self.show()
+        self.updateByID(noteref, "BNye World")
+        self.getByID(noteref)
+        time.sleep(20)
+        self.delete(noteref)
+        self.exitProgram()
 
 
 if __name__ == "__main__":
     x = TodoList()
     x.test()
-
