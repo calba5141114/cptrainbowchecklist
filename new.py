@@ -15,7 +15,7 @@ class TodoList(object):
             for note in self.notes:
                 print("\n"+str(note))
         else:
-            print("You currently have zero notes L")
+            print("You currently have zero notes ")
 
     def changeState(self, id, state):
         ''' mark tasks as complete or uncomplete '''
@@ -63,6 +63,9 @@ class TodoList(object):
             if note["id"] == id:
                 return note
 
+    # aliasing the select function with getByID
+    select = getByID
+
     def exitProgram(self):
         ''' closes program '''
         print(
@@ -79,11 +82,15 @@ class TodoList(object):
     def test(self):
         self.show()
         noteref = self.create("Hello World", "Test")
+        secondnoteref = self.create("Second Note that will not be deleted","Test2")
+        self.show()
         self.changeState(noteref, True)
+        self.changeState(secondnoteref, True)
         self.show()
         self.updateByID(noteref, "BNye World")
-        self.getByID(noteref)
-        time.sleep(20)
+        print(str(self.select(noteref)))
+        print(str(self.getByID(noteref)))
+        time.sleep(4)
         self.delete(noteref)
         self.exitProgram()
 
